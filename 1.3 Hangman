@@ -1,0 +1,48 @@
+echo "# APCSP" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/olle-rockett20/APCSP.git
+git push -u origin master
+__import__()
+"""
+elements = ""
+
+for i in range (3):
+    Categories = raw_input("Enter a category: ")
+    for i in range (3):
+        input= raw_input("Enter something in that category:")
+        elements =  elements + " "+ input
+
+    print "Category:" + " " + Categories + elements
+    elements = ""
+"""
+def check_word(word, checker):
+    if word.__contains__(checker):
+        return True
+    return False
+
+print "Hi!!! Welcome to Oliver and Sebastiens game of Hangman. Enjoy!!"
+
+players= raw_input("Would you like to play with a friend or by yourself?" )
+if players.__eq__("myself") :
+    raw_input("Would you like to guess the word or have the computer guess your word? ")
+
+    player_1 = raw_input("What is your name?")
+    player_2 = raw_input("What is your name?")
+
+word = " hello "
+if word.__contains__('c'):
+
+
+
+number_of_letters = int(raw_input("How many letters are in your word?"))
+
+secret_word = raw_input("What is your word? ")
+
+def get_guess():
+
+        raw_input("Guess a letter: ")
+        print "Guess must be exactly one letter!!"
+
+    if get_guess() > o
