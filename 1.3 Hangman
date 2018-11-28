@@ -1,48 +1,110 @@
-echo "# APCSP" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/olle-rockett20/APCSP.git
-git push -u origin master
-__import__()
-"""
-elements = ""
+import random
 
-for i in range (3):
-    Categories = raw_input("Enter a category: ")
-    for i in range (3):
-        input= raw_input("Enter something in that category:")
-        elements =  elements + " "+ input
 
-    print "Category:" + " " + Categories + elements
-    elements = ""
-"""
-def check_word(word, checker):
-    if word.__contains__(checker):
+name = raw_input("What is your name? ")
+name = name.capitalize()
+def choose_word():
+
+    word = [  "computer", "juice", "laptop",  "mirror" "basketball", "xylophone", "hangman", "lynx", "sister", "brother",
+              "tritons", "raiders", "panda express", "rocket science", "esskettit", "lets get this bread",
+              "netflix and chill", "barry zeait", "skrrt", "sheep mode", "you lost", "shawn", "seabass", "oliver",
+              "modaferri", "despacito", "big cheese", "conquistadora", "perdiste"]
+    return random.choice(word)
+
+def guess_letter(word_, hidden_word_, no_guesses_, letters_):
+    print '---------------------------------------'
+    print 'You have', no_guesses_, 'guesses left.'
+    print 'Available letters:', letters_
+
+    guess = raw_input("Please guess a letter:")
+    guess = guess.lower()
+    if no_guesses_ == 7:
+        print "________      "
+        print "|      |      "
+        print "|             "
+        print "|             "
+        print "|             "
+        print "|             "
+    elif no_guesses_ == 6:
+        print "________      "
+        print "|      |      "
+        print "|      0      "
+        print "|             "
+        print "|             "
+        print "|             "
+    elif no_guesses_ == 5:
+        print "________      "
+        print "|      |      "
+        print "|      0      "
+        print "|     /       "
+        print "|             "
+        print "|             "
+    elif no_guesses_ == 4:
+        print "________      "
+        print "|      |      "
+        print "|      0      "
+        print "|     /|      "
+        print "|             "
+        print "|             "
+    elif no_guesses_ == 3:
+        print "________      "
+        print "|      |      "
+        print "|      0      "
+        print "|     /|\     "
+        print "|             "
+        print "|             "
+    elif no_guesses_ == 2:
+        print "________      "
+        print "|      |      "
+        print "|      0      "
+        print "|     /|\     "
+        print "|     /       "
+        print "|             "
+    elif no_guesses_ == 1:
+        print "________      "
+        print "|      |      "
+        print "|      0      "
+        print "|     /|\     "
+        print "|     / \     "
+        print "|             "
+
+    if guess in letters_:
+        letters_ = letters_.replace(guess, '')
+
+        if guess in word_:
+            progress = list(hidden_word_)
+            character_position = -1
+            for character in word_:
+                character_position += 1
+                if guess == character:
+                    progress[character_position] = guess
+            hidden_word_ = ''.join(progress)
+            print 'Good guess =', hidden_word_
+        else:
+            print 'Oops! That letter is not in my word:', hidden_word_
+            no_guesses_ = no_guesses_ - 1
+
+    else:
+        print 'The letter "', guess, '" was already used!'
+        no_guesses_ = no_guesses_
+
+    if hidden_word_ == word_:
+        print 'Congratulations, you won ' + name + "!"
         return True
-    return False
+    if no_guesses_ == 0 and hidden_word_ != word_:
+        print 'Game over! Try again! The word was ' + word_
+        return False
+    return guess_letter(word_, hidden_word_, no_guesses_, letters_)
 
-print "Hi!!! Welcome to Oliver and Sebastiens game of Hangman. Enjoy!!"
+def hangman():
+    hangman_word = choose_word()
+    print 'Welcome to Sebastien and Olivers game of hangman ' + name + "!"
+    print 'I am thinking of a word that is', len(hangman_word), 'letters long.'
 
-players= raw_input("Would you like to play with a friend or by yourself?" )
-if players.__eq__("myself") :
-    raw_input("Would you like to guess the word or have the computer guess your word? ")
+    hidden_word = ''.join(['_'] * len(hangman_word))
+    no_guesses = 8
+    letters = 'abcdefghijklmnopqrstuvwxyz '
 
-    player_1 = raw_input("What is your name?")
-    player_2 = raw_input("What is your name?")
+    guess_letter(hangman_word, hidden_word, no_guesses, letters)
 
-word = " hello "
-if word.__contains__('c'):
-
-
-
-number_of_letters = int(raw_input("How many letters are in your word?"))
-
-secret_word = raw_input("What is your word? ")
-
-def get_guess():
-
-        raw_input("Guess a letter: ")
-        print "Guess must be exactly one letter!!"
-
-    if get_guess() > o
+hangman()
